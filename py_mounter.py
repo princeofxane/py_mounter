@@ -39,9 +39,9 @@ def find_and_extract_block_alias(drive_name):
     return match[0], True
 
 # load_config loads the config file.
-def load_config():
+def load_config(username):
     try: 
-        yaml_file_path = yaml.safe_load('/home/prince/.config/py_mounter/config.yaml')
+        yaml_file_path = yaml.safe_load(f'/home/{username}/.config/py_mounter/config.yaml')
     except yaml.YAMLError as e:
         print(f'failed to load env file: {e}')
 
@@ -57,7 +57,9 @@ def load_config():
         return data
 
 if __name__ == "__main__":
-    config = load_config()
+    username = getpass.getuser()
+
+    config = load_config(username)
     # load config
     mount_directory = config['mount_directory']
     hdd_name = config['hdd_name']
@@ -76,6 +78,3 @@ if __name__ == "__main__":
         print(f'successfully mounted')
     except subprocess.CalledProcessError as e:
         print(f'error mounting the device: {e}')
-
-
-
