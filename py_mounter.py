@@ -41,7 +41,7 @@ def find_and_extract_block_alias(drive_name):
 # load_config loads the config file.
 def load_config():
     try: 
-        yaml_file_path = yaml.safe_load('/home/prince/.config/hdd_mounter/config.yaml')
+        yaml_file_path = yaml.safe_load('/home/prince/.config/py_mounter/config.yaml')
     except yaml.YAMLError as e:
         print(f'failed to load env file: {e}')
 
