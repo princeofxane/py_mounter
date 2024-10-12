@@ -34,7 +34,7 @@ def find_and_extract_block_alias(drive_name):
 
     # find the specific block alias.
     pattern = r'\bsd[a-z]\d+\b'
-    match = re.search(pattern, row)
+    match = re.search(pattern, block_data)
 
     return match[0], True
 
@@ -72,6 +72,9 @@ if __name__ == "__main__":
     blk_alias, is_found = find_and_extract_block_alias(hdd_name)
     if not is_found:
         quit('could not find the device')
+
+    if config['is_active'] == False:
+        quit('is_active is false we do not mount anything')
 
     try:
         subprocess.run(['udisksctl', 'mount', '-b', '/dev/'+blk_alias], check=True)
