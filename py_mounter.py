@@ -33,7 +33,12 @@ def find_and_extract_block_alias(drive_name):
         return None, False
 
     # find the specific block alias.
-    pattern = r'\bsd[a-z]\d+\b'
+
+    # this pattern works for ubuntu.
+    # pattern = r'\bsd[a-z]\d+\b'
+
+    #rpi specific
+    pattern = r'\bsd[a-z]\b'
     match = re.search(pattern, block_data)
 
     return match[0], True
