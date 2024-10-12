@@ -9,7 +9,7 @@ Target: RPI.
 ### Create this service file.
 This file defines the service and picks up the script needs to be executed.
 
-* location: `/etc/systemd/system/hdd_mounter.service `
+* location: `/etc/systemd/system/py_mounter.service `
 
 ```
 [Unit]
@@ -17,7 +17,7 @@ Description=My Python Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 /home/prince/Work/python/hdd_mounter/py_mounter.py
+ExecStart=/usr/bin/python3 /home/prince/Work/python/py_mounter/py_mounter.py
 WorkingDirectory=/home/prince
 Restart=always
 User=prince
@@ -30,16 +30,16 @@ WantedBy=multi-user.target
 ### Create a timer.
 The timer defines how often the service should re-run. It the cron spec.
 
-* location: `/etc/systemd/system/hdd_mounter.service `
+* location: `/etc/systemd/system/py_mounter.service `
 
 ```
 [Unit]
-Description=Runs hdd_mounter.service every 1 minutes
+Description=Runs py_mounter.service every 1 minutes
 
 [Timer]
 OnBootSec=2min
 OnUnitActiveSec=1min
-Unit=hdd_mounter.service
+Unit=py_mounter.service
 
 [Install]
 WantedBy=timers.target
@@ -79,20 +79,20 @@ Change the defaults to this.
 
 * To enable the service or a time.
 
-`sudo systemctl enable hdd_mounter.service` or `sudo systemctl enable hdd_mounter.timer`
+`sudo systemctl enable py_mounter.service` or `sudo systemctl enable py_mounter.timer`
 
 * To start the service.
 
-`sudo systemctl start hdd_mounter.timer`
+`sudo systemctl start py_mounter.timer`
 
 * To restart the service.
 
-`sudo systemctl restart hdd_mounter.service`
+`sudo systemctl restart py_mounter.service`
 
 * To view the quick status.
 
-`sudo systemctl status hdd_mounter.service`
+`sudo systemctl status py_mounter.service`
 
 * To follow the log.
 
-`sudo journalctl -u hdd_mounter.service`
+`sudo journalctl -u py_mounter.service`
