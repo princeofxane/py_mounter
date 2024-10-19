@@ -72,14 +72,14 @@ if __name__ == "__main__":
 
     is_mounted = mount_status(mount_point)
     if is_mounted:
-        quit('nothing to do, device is already mounted') 
+        sys.exit('-----device already mounted-----') 
 
     blk_alias, is_found = find_and_extract_block_alias(hdd_name)
     if not is_found:
-        quit('could not find the device')
+        sys.exit('could not find the device')
 
     if config['is_active'] == False:
-        quit('is_active is false we do not mount anything')
+        sys.exit('is_active is false we do not mount anything')
 
     try:
         subprocess.run(['udisksctl', 'mount', '-b', '/dev/'+blk_alias], check=True)
