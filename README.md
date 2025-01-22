@@ -97,6 +97,10 @@ Change the defaults to this.
 
 `sudo journalctl -u py_mounter.service`
 
+* To follow the log in real time add -f flag.
+
+`sudo journalctl -u py_mounter.service -f`
+
 * To reload polkitd.
 
 `sudo systemctl restart polkit`
